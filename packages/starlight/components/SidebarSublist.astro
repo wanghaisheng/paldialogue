@@ -1,0 +1,104 @@
+---
+import type { SidebarEntry } from '../utils/navigation';
+import Icon from './Icon.astro';
+
+interface Props {
+  sublist: SidebarEntry[];
+}
+---
+
+<ul>
+  {
+    Astro.props.sublist.map((entry) => (
+      <li class:list={{ 'sidebar-group': entry.type === 'group' }}>
+        {entry.type === 'link' ? (
+          <a href={entry.href} aria-current={entry.isCurrent && 'page'}>
+            {entry.label}
+          </a>
+        ) : (
+          <details open>
+            <summary>
+              <h2>{entry.label}</h2>
+              <Icon name="right-caret" class="caret" size="1.25rem" />
+            </summary>
+            <Astro.self sublist={entry.entries} />
+          </details>
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  ul {
+    --sl-sidebar-item-padding-inline: 0.5rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  h2 {
+    font-size: var(--sl-text-lg);
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+
+  .sidebar-group + .sidebar-group {
+    margin-top: 0.75rem;
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: var(--sl-sidebar-item-padding-inline);
+    cursor: pointer;
+    user-select: none;
+  }
+  summary::marker,
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .caret {
+    transition: transform 0.2s ease-in-out;
+  }
+  :global([dir='rtl']) .caret {
+    transform: rotateZ(180deg);
+  }
+  [open] > summary .caret {
+    transform: rotateZ(90deg);
+  }
+
+  a {
+    display: block;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    color: var(--sl-color-gray-2);
+    padding: 0.1em var(--sl-sidebar-item-padding-inline);
+  }
+
+  a:hover,
+  a:focus {
+    color: var(--sl-color-white);
+  }
+
+  [aria-current='page'],
+  [aria-current='page']:hover,
+  [aria-current='page']:focus {
+    font-weight: 600;
+    color: var(--sl-color-text-invert);
+    background-color: var(--sl-color-text-accent);
+  }
+
+  @media (min-width: 50rem) {
+    .sidebar-group + .sidebar-group {
+      margin-top: 0.5rem;
+    }
+    h2 {
+      font-size: var(--sl-text-base);
+    }
+    a {
+      font-size: var(--sl-text-sm);
+    }
+  }
+</style>
