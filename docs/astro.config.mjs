@@ -45,6 +45,9 @@ export default defineConfig({
         es: { label: 'Español', lang: 'es' },
         ja: { label: '日本語', lang: 'ja' },
         fr: { label: 'Français', lang: 'fr' },
+        zh_ch: { label: '简体中文', lang: 'zh-cn' },
+        zh_tw: { label: '繁体中文', lang: 'zh-tw' },
+
       },
       sidebar: [
         {
