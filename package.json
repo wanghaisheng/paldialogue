@@ -15,7 +15,9 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.1.4",
-    "astro": "^2.5.0"
+    "astro": "^2.5.0",
+    "execa": "^7.1.1"
+
   },
   "devDependencies": {
     "@size-limit/file": "^8.2.4",
