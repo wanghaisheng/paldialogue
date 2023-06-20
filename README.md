@@ -1,8 +1,10 @@
 To-do-List:
 
 1. 使用 astro 的多语种文档机制，提供多语种的展现
+2. 
+https://github.com/wanghaisheng/starlight-blog-tempalte
 
-2. 使用飞书翻译、沉浸式翻译得到多语种的机翻文本
+3. 使用飞书翻译、沉浸式翻译得到多语种的机翻文本
 
 # 仙剑奇侠传系列剧情对话资料
 
